@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>final</title>
+
+<script>
+    
+    function final() {
+
+    //gets the textbox
+    let myTextbox = document.getElementById("t")
+    let myButton = document.getElementById("b")
+
+    myButton.onclick = function() {
+
+        // STORAGE HTML
+
+    if(myTextbox.value.toUpperCase().includes("STORAGE"))
+        {
+        let a = document.createElement('a')
+        let linkText = document.createTextNode("storage.html")
+        a.appendChild(linkText);
+        a.title = "storage.html";
+        a.href = "storage.html";
+        document.body.appendChild(a)
+        }
+
+        // ALIEN HTML
+
+    else if(myTextbox.value.toUpperCase().includes("ALIEN"))
+        {
+       
+        }
+
+        // JQUERY HTML
+
+    else if(myTextbox.value.toUpperCase().includes("JQUERY"))
+        {
+       
+        }
+
+        // PLUGIN HTML
+
+    else if(myTextbox.value.toUpperCase().includes("PLUGIN"))
+        {
+       
+        }
+
+        // AJAX HTML
+
+    else if(myTextbox.value.toUpperCase().includes("AJAX"))
+        {
+       
+        }
+
+        // ALPHABET HTML
+
+    else if(myTextbox.value.toUpperCase().includes("ALPHABET"))
+        {
+       
+        }
+    }
+    }
+
+    window.onload = final
+</script>
+</head>
+<body>
+        <input type="text" id="t">
+        <br>
+        <br>
+        <button type="button" id="b">Click me!</button>
+        <br>
+        <br>
+</body>
+</html>
