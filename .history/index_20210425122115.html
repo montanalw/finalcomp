@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Comp2130_finalproject</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+    
+    function final() {
+
+    //gets the textbox
+    let myTextbox = document.getElementById("t")
+    let myButton = document.getElementById("b")
+
+    myButton.onclick = function() {
+
+        // STORAGE HTML
+
+    if(myTextbox.value.toUpperCase().includes("STORAGE"))
+        {
+        let a = document.createElement('a')
+        let linkText = document.createTextNode("storage.html")
+        a.appendChild(linkText);
+        a.title = "storage.html";
+        a.href = "storage.html";
+        document.body.appendChild(a) 
+        }
+
+        // ALIEN HTML
+
+    else if(myTextbox.value.toUpperCase().includes("ALIEN"))
+        {
+        let alien = document.createElement('img');
+        img.src = "/alien/alienrwalk9.gif";
+        document.body.appendChild(alien);
+        src.appendChild(alien);
+        }
+
+        // JQUERY HTML
+
+    else if(myTextbox.value.toUpperCase().includes("JQUERY"))
+        {
+       
+        }
+
+        // PLUGIN HTML
+
+    else if(myTextbox.value.toUpperCase().includes("PLUGIN"))
+        {
+       
+        }
+
+        // AJAX HTML
+
+    else if(myTextbox.value.toUpperCase().includes("AJAX"))
+        {
+            
+             // create the AJAX object
+            var bucket = new XMLHttpRequest()   
+
+            // open the AJAX object's request
+            bucket.open("GET", "advice.txt", false) // confirm that false is asynchronous
+
+            // create h1 elemt and append it to the body, then add innerHTML of response
+            bucket.onreadystatechange = function()
+            {
+                heading = document.createElement('h1');
+                document.body.appendChild(heading);
+                document.getElementsByTagName('h1')[0].innerHTML = bucket.responseText
+            }
+
+            // send the request
+            bucket.send(null)
+        }
+    
+        // ALPHABET HTML
+
+    else if(myTextbox.value.toUpperCase().includes("ALPHABET"))
+        {
+       
+        }
+    }
+    }
+
+    // EXAMPLE //
+
+    var json = '[{"name":"John", "age":35, "city":"New York"},{ "name":"Jane", "age":15, "city":"Atlanta"},{"name":"Raha", "age":22, "city":"Minsk"},{ "name":"Kevin", "age":27, "city":"Vancouver"},{"name":"Dawson", "age":30, "city":"New York"},{ "name":"Jacob", "age":32, "city":"Maple Ridge"},{"name":"Tyler", "age":75, "city":"Victoria"},{ "name":"Lance", "age":50, "city":"Surrey"},{"name":"Junn", "age":18, "city":"Burnaby"},{ "name":"Montana", "age":65, "city":"North Vancouver"}]';
+        
+        var person = JSON.parse(json);
+      
+        for (var i = 0; i < person.length; i++)
+        {
+          //go to person var and take name out of it
+          var name= person[i].name 
+
+          //go to person var and take age out of it
+          var age = person[i].age
+          
+          //go to person var and take city out of it
+          var city = person[i].city
+
+          newDiv = document.createElement('div');
+          header = document.createElement('h1');
+          par = document.createElement('p');
+          header.innerHTML = name.toUpperCase();
+          par.innerHTML = 'age ' + age + ', from ' + city ;
+          newDiv.appendChild(header);   
+          newDiv.appendChild(par);   
+
+          document.body.appendChild(newDiv)
+
+          if (age >= 0 && age <= 20)
+          {
+            newDiv.style.background = 'yellow'
+            
+          } 
+          
+          else if (age >= 21 && age <= 40)
+          {
+            newDiv.style.background = 'pink'
+
+          } 
+
+          else if (age >= 41 && age <= 60)
+          {
+            newDiv.style.background = 'cyan'
+
+          }
+
+          else if (age >= 61 && age <= 100)
+          {
+            newDiv.style.background = 'silver'
+
+          }
+
+        } 
+
+      }    
+
+
+    window.onload = final
+</script>
+</head>
+<body>                
+        <input type="text" id="t">
+        <br>
+        <br>
+        <button type="button" id="b">Click me!</button>
+        <br>
+        <br>
+</body>
+</html>

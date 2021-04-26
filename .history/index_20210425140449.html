@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Comp2130_finalproject</title>
-        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
         <script>
         
@@ -51,7 +51,7 @@
                         
                     }
 
-                    // AJAX
+                    // AJAX HTML
 
                     else if(myTextbox.value.toUpperCase().includes("AJAX"))
                     {
@@ -73,8 +73,9 @@
                                 heading = document.createElement('h1');
                                 document.body.appendChild(heading);
                                 document.getElementsByTagName('h1')[0].innerHTML = xmlHttp.responseText;
-                                heading.id = "ajax";
+                                myObj.id = "ajax";
                                 document.getElementById("ajax").innerHTML = myObj;
+                                
                             }                            
                         };
                         
@@ -84,7 +85,7 @@
                 
                 
                 
-                    // ALPHABET
+                    // ALPHABET HTML
 
                     else if(myTextbox.value.toUpperCase().includes("ALPHABET"))
                     {

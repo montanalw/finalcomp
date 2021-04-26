@@ -1,0 +1,3 @@
+["i", "cant", "get", "the", "stupid", "json", "thing", "to", "work", "with", "this", "what", "the", "heck." ]
+
+["Many", "recieve", "advice,", "only", "the", "wise", "profit"]

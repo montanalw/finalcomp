@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Comp2130_finalproject</title>
-        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
         <script>
         
@@ -51,7 +51,7 @@
                         
                     }
 
-                    // AJAX
+                    // AJAX HTML
 
                     else if(myTextbox.value.toUpperCase().includes("AJAX"))
                     {
@@ -63,8 +63,6 @@
 
                         var xmlHttp = new XMLHttpRequest()   
 
-                        xmlHttp.open("GET", "advice.txt", true);
-                    
                         xmlHttp.onreadystatechange = function()
                         {
                             if(xmlHttp.readyState == 4 && xmlHttp.status == 200)
@@ -75,16 +73,18 @@
                                 document.getElementsByTagName('h1')[0].innerHTML = xmlHttp.responseText;
                                 heading.id = "ajax";
                                 document.getElementById("ajax").innerHTML = myObj;
+                                document.getElementById("ajax").innerHTML = toUpperCase();
                             }                            
                         };
-                        
-                        xmlHttp.send();
+
+                        xmlHttp.open("GET", "advice.txt", true);
+                        xmlhttp.send();
                         
                     }
                 
                 
                 
-                    // ALPHABET
+                    // ALPHABET HTML
 
                     else if(myTextbox.value.toUpperCase().includes("ALPHABET"))
                     {

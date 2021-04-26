@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <script>
+
+                            // create a car object and store it in local storage in plain text (json)
+                car = {make: "dodge", model: "charger", year: 2021, manualTransmission: true}	// OBJECT
+                alert("i drive a " + car.year + " " + car.make + " " + car.model)
+                if(car.manualTransmission)
+                {
+                    alert(" with a six-speed manual transmission")
+                }
+                else
+                {
+                    alert(" with an automatic transmission")
+                }
+                jsonCar = JSON.stringify(car)					// OBJECT BECOMES A STRING
+                localStorage.setItem("carcar", jsonCar)				// OBJECT STORED AS STRING
+                
+                // get the car object from local storage (plain text, json) and convert to js object
+                textCar = localStorage.getItem("carcar")				// GET THE STRING
+                newCar = JSON.parse(textCar)					// NOW WE HAVE AN OBJECT
+                console.log(newCar)
+
+    
+          
+        </script>
+    </head>
+    <body>
+        
+    </body>
+</html>
