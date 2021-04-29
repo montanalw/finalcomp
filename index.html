@@ -27,21 +27,26 @@
                     document.body.appendChild(a) 
                     }
 
-                    // ALIEN HTML
+                    // ALIEN
 
                     else if(myTextbox.value.toUpperCase().includes("ALIEN"))
                     {
                     let alien = document.createElement('img');
-                    img.src = "/alien/alienrwalk9.gif";
+                    src = "/alien/alienrwalk9.gif";
                     document.body.appendChild(alien);
-                    src.appendChild(alien);
+                    alien.style.position = "absolute"
+                    alien.style.left = "30px";
+                    alien.style.top = "80px";
                     }
 
                     // JQUERY HTML
 
                     else if(myTextbox.value.toUpperCase().includes("JQUERY"))
                     {
-                
+                        let jquery = document.createElement('img');
+                        src = "/images/ramen1.jpg";
+                        document.body.appendChild(jquery);
+                        src.appendChild(jquery);
                     }
 
                     // PLUGIN HTML
@@ -70,12 +75,21 @@
                             if(xmlHttp.readyState == 4 && xmlHttp.status == 200)
                             {
                                 var myObj = JSON.parse(this.responseText);
+
+                                for (i = 0; i < xmlHttp.responseText.length; i++) {
+                                        myObj[i] + "<br>";
+                                        }   
+
                                 heading = document.createElement('h1');
                                 document.body.appendChild(heading);
                                 document.getElementsByTagName('h1')[0].innerHTML = xmlHttp.responseText;
+                                var myObj = JSON.parse(this.responseText.toUpperCase());
                                 heading.id = "ajax";
                                 document.getElementById("ajax").innerHTML = myObj;
-                            }                            
+
+
+                            }   
+                    
                         };
                         
                         xmlHttp.send();
