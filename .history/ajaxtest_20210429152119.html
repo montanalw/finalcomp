@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        
+        <p>The content is written in JSON format, and can easily be converted into a JavaScript object.</p>
+
+        <p id="demo"></p>
+
+        <script>
+            
+            var xmlhttp = new XMLHttpRequest();
+            
+            xmlhttp.onreadystatechange = function() {
+            
+                if (this.readyState == 4 && this.status == 200) 
+                {
+                    var myArr = JSON.parse(this.responseText);
+                    document.getElementById("demo").innerHTML = myArr[0];
+                }	
+
+            };
+            
+            xmlhttp.open("GET", "adivce.txt", true);
+            
+            xmlhttp.send();
+
+        </script>
+
+    </body>
+</html>

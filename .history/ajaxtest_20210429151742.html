@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        
+        <p>The content is written in JSON format, and can easily be converted into a JavaScript object.</p>
+
+        <p id="demo"></p>
+
+        <script>
+            var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+    var myArr = JSON.parse(this.responseText);
+    document.getElementById("demo").innerHTML = myArr[0];
+  }	
+};
+xmlhttp.open("GET", "json_demo_array.txt", true);
+xmlhttp.send();
+
+        </script>
+
+
+// send the request
+                        xmlhttp.send(null)
+
+                        var json = ["i", "cant", "get", "the", "stupid", "json", "thing", "to", "work", "with", "this", "what", "the", "heck"]
+
+                        var person = JSON.parse(json);
+
+    </body>
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Comp2130_finalproject</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+        <script>
+        
+            function final()
+            {
+
+                //gets the textbox
+                let myTextbox = document.getElementById("t")
+                let myButton = document.getElementById("b")
+
+                myButton.onclick = function() 
+                {
+
+                    // STORAGE HTML
+                    // pending demo and explanation
+
+                    if(myTextbox.value.toUpperCase().includes("STORAGE"))
+                    {
+                    let a = document.createElement('a')
+                    let linkText = document.createTextNode("storage.html")
+                    a.appendChild(linkText);
+                    a.title = "storage.html";
+                    a.href = "storage.html";
+                    document.body.appendChild(a) 
+                    }
+
+                    // ALIEN                                    
+
+                    if(myTextbox.value.toUpperCase().includes("ALIEN"))
+                    {
+                        currentStepNumber = 0
+                        movingTimer = null
+
+                        let alien = document.createElement('img');
+                        alien.src = "/alien/alienrwalk0.gif";
+                        document.body.appendChild(alien);
+                        alien.style.position = "absolute"
+                        alien.style.left = "30px";
+                        alien.style.top = "80px";
+                        alien.id = "alienImg"
+
+                        if(myTextbox.value.toUpperCase().includes("WALK"))
+                        {
+
+                            moveTimer = null 
+                            stepNumber = 0
+                            
+                            function step()
+                            {
+                                stepNumber = stepNumber + 1
+
+                                if(stepNumber > 30)
+                                {
+                                    stepNumber = 0
+                                }
+
+                                alien.src = "images/alien/alienrwalk" + stepNumber + ".gif"
+                            }
+
+                            function move()
+                            {
+                                alien.style.left = parseInt(alien.style.left) + 1 + "px"
+                                step()
+                            }
+
+                            function toggleMoving()
+                            {
+                                if(moveTimer == null)
+                                {
+                                    moveTimer = setInterval(move, 20)
+                                }
+                                else
+                                {
+                                    clearInterval(moveTimer)
+                                    moveTimer = null
+                                }
+                            }                            
+                        }                                                                                                                                                           
+
+                    }
+
+                    // JQUERY HTML
+
+                    if(myTextbox.value.toUpperCase().includes("JQUERY"))
+                    {
+                        for (var i = 1; i < 5; i++) 
+                        {
+                            var jquery = document.createElement("img");
+                            jquery.src = "images/cage" + i + ".jpg";
+                            document.body.appendChild(jquery);
+                            jquery.id = "cage"                            
+
+                            $(jquery).width(200)
+                            $(function () {
+                            $($("img")[1]).click(function() {
+                                $(this).css('border', "solid 10px red");  
+                            });
+                            });
+                        }
+                    }
+
+                    // PLUGIN HTML
+
+                    if(myTextbox.value.toUpperCase().includes("PLUGIN"))
+                    {
+                        
+                    }
+
+                    // AJAX
+
+                    if(myTextbox.value.toUpperCase().includes("AJAX"))
+                    {
+                        
+                        // create the AJAX object
+                        // open the AJAX object's request
+                        // xmlhttp.open("GET", "advice.txt", true) // confirm that false is asynchronous
+                        // create h1 element and append it to the body, then add innerHTML of response
+
+                        var xmlHttp = new XMLHttpRequest()   
+
+                        xmlHttp.open("GET", "advice.txt", true);
+                    
+                        xmlHttp.onreadystatechange = function()
+                        {
+                            if(xmlHttp.readyState == 4 && xmlHttp.status == 200)
+                            {
+                                var myObj = JSON.parse(this.responseText);
+
+                                for (i = 0; i < xmlHttp.responseText.length; i++) {
+                                        xmlHttp[i] + "<br>";
+                                        }   
+
+                                heading = document.createElement('h1');
+                                document.body.appendChild(heading);
+                                document.getElementsByTagName('h1')[0].innerHTML = xmlHttp.responseText;
+                                var myObj = JSON.parse(this.responseText.toUpperCase());
+                                heading.id = "ajax";
+                                document.getElementById("ajax").innerHTML = myObj;
+
+                            }   
+                    
+                        };
+                        
+                        xmlHttp.send();
+                        
+                    }
+                
+                
+                
+                    // ALPHABET
+
+                    if(myTextbox.value.toUpperCase().includes("ALPHABET"))
+                    {
+                        
+
+                        let myTextbox = document.getElementById('t').value
+
+                        for(let i = 'z'.charCodeAt(0); i <= 'a'.charCodeAt(0); i++)
+                        {
+
+                            let myLetter = String.fromCharCode(i)
+                            let myImage = document.createElement("img")
+                            myImage.id = myLetter 
+                            myImage.width = 40
+                            myImage.src = "/letters/" + myLetter + ".png"
+                            document.body.appendChild(myImage)
+
+                            /*let theLetter = String.fromCharCode(i)
+                            let image = document.createElement("img")
+                            image.src = "letters/" + theLetter + ".png"
+                            image.id = theLetter
+                            image.width = 40
+                            image.height = 50 */
+
+                        }                                                    
+
+                        /*let FirstImage = document.createElement('img')
+                            let theLetter = String.fromCharCode(i)
+                            FirstImage.src = "letters/" + i + ".png"
+                            document.body.appendChild(FirstImage)
+                            FirstImage.id = theLetter*/
+
+                            /*var letters = document.createElement("img");
+                            letters.src = "letters/" + i + ".png";
+                            document.body.appendChild(letters);
+                            letters.id = "alphabet"   
+                        }*/
+
+                        // strings lecture
+                        // we can loop through any characters
+                        // let's loop from a to z and console.log each letter
+                       
+                       /* for(let i = 'a'.charCodeAt(0); i <= 'z'.charCodeAt(0); i++)
+                        {
+                            // console.log(String.fromCharCode(i))
+                            let myLetter = String.fromCharCode(i)
+
+                            // create an img element
+                            // set its ID to myLetter
+                            // set its src to myLetter.png  (e.g. a.png, b.png, z.png)
+                            // append this new img to the end of the body
+                            let myImage = document.createElement("img")
+                            myImage.id = myLetter 
+                            myImage.width = 100
+                            myImage.src = "images/letters/" + myLetter + ".png"
+                            document.body.appendChild(myImage)
+                        }*/
+                            
+                        
+
+                       
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                    }
+
+                    
+                }
+            
+
+                
+            
+            }
+
+            window.onload = final    
+        </script>
+    </head>
+    <body>                            
+        <input type="text" id="t">
+        <br>
+        <br>
+        <button type="button" id="b">Click me!</button>
+        <br>
+        <br>
+    </body>
+</html>

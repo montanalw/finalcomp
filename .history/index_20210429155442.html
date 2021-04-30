@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Comp2130_finalproject</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+        <script>
+        
+            function final(){
+
+                //gets the textbox
+                let myTextbox = document.getElementById("t")
+                let myButton = document.getElementById("b")
+
+                myButton.onclick = function() {
+
+                    // STORAGE HTML
+                    // pending demo and explanation
+
+                    if(myTextbox.value.toUpperCase().includes("STORAGE"))
+                    {
+                    let a = document.createElement('a')
+                    let linkText = document.createTextNode("storage.html")
+                    a.appendChild(linkText);
+                    a.title = "storage.html";
+                    a.href = "storage.html";
+                    document.body.appendChild(a) 
+                    }
+
+                    // ALIEN
+                    // pending: alien needs to leave
+                    // it needs movement                
+
+                    if(myTextbox.value.toUpperCase().includes("ALIEN"))
+                    {
+                        currentStepNumber = 0
+                        movingTimer = null
+
+                    let alien = document.createElement('img');
+                    alien.src = "/alien/alienrwalk0.gif";
+                    document.body.appendChild(alien);
+                    alien.style.position = "absolute"
+                    alien.style.left = "30px";
+                    alien.style.top = "80px";
+                    alien.id = "alienImg"
+
+                        if(myTextbox.value.toUpperCase().includes("WALK"))
+                        {
+                            
+                            
+
+                            currentStepNumber = 0
+                            movingTimer = null
+                            screenWidth = window.innerWidth                        
+
+                            function setThingsUp()
+                            {                
+                                alien = document.getElementById("alienImg")                                
+                            }
+                           
+                            function walk()
+                            {         
+                                if(movingTimer == null)
+                                {                        
+                                    movingTimer = setInterval(moveRight, 20)                        
+                                }
+
+                                function stepRight()
+                                {                
+                                    currentStepNumber++
+                                    
+                                    if(currentStepNumber > 30)
+                                    {
+                                        currentStepNumber = 0
+                                    }
+                                    
+                                    alien.src = "/alien/alienrwalk" + currentStepNumber + ".gif"                
+                                }
+                                
+                                function moveRight()
+                                {         
+                                    willCrashIntoBox()            
+                                    stepRight()            
+                                    alien.style.left = parseInt(alien.style.left) + 1 + "px"                
+
+                                    if(parseInt(alien.style.left) == screenWidth - 70)
+                                    {
+                                        stopMoving()
+                                        movingTimer = setInterval(moveLeft, 20)                    
+                                    }
+                                }
+
+                                function stepLeft()
+                                {                
+                                    currentStepNumber++
+
+                                    if(currentStepNumber > 30)
+                                    {
+                                        currentStepNumber = 0
+                                    }
+                                                    
+                                    alien.src = "/alien/alienlwalk" + currentStepNumber + ".gif"                
+                                }
+
+                                function moveLeft()
+                                {
+                                    stepLeft()
+                                    alien.style.left = parseInt(alien.style.left) - 1 + "px"
+                                    
+                                    if(parseInt(alien.style.left) == -20)
+                                    {
+                                        stopMoving()
+                                        movingTimer = setInterval(moveRight, 20)                    
+                                    }
+                                }                                            
+                            }
+
+                            function stopMoving ()
+                            {
+                                if(myTextbox.value.toUpperCase().includes("BYE"))
+                                {
+                                    clearInterval(movingTimer)
+                                    movingTimer = null
+                                }
+                            }        
+
+                            function run()
+                            {                                
+                                if(myTextbox.value.toUpperCase().includes("WALK"))
+                                {                    
+                                    if(movingTimer == null)
+                                    {
+                                        movingTimer = setInterval(moveLeft, 20)                        
+                                    }
+                                }                                              
+                            }                                                        
+                        }                    
+                    }
+
+                   
+
+                    
+                    
+                        // JQUERY HTML
+
+                   if(myTextbox.value.toUpperCase().includes("JQUERY"))
+                    {
+                        for (var i = 1; i < 5; i++) 
+                        {
+                            var jquery = document.createElement("img");
+                            jquery.src = "images/cage" + i + ".jpg";
+                            document.body.appendChild(jquery);
+                            jquery.id = "cage"                            
+
+                            $(jquery).width(200)
+                            $(function () {
+                            $($("img")[1]).click(function() {
+                                $(this).css('border', "solid 10px red");  
+                            });
+                            });
+                        }
+                    }
+
+                    // PLUGIN HTML
+
+                    if(myTextbox.value.toUpperCase().includes("PLUGIN"))
+                    {
+                        
+                    }
+
+                    // AJAX
+
+                    if(myTextbox.value.toUpperCase().includes("AJAX"))
+                    {
+                        
+                        // create the AJAX object
+                        // open the AJAX object's request
+                        // xmlhttp.open("GET", "advice.txt", true) // confirm that false is asynchronous
+                        // create h1 element and append it to the body, then add innerHTML of response
+
+                        var xmlHttp = new XMLHttpRequest()   
+
+                        xmlHttp.open("GET", "advice.txt", true);
+                    
+                        xmlHttp.onreadystatechange = function()
+                        {
+                            if(xmlHttp.readyState == 4 && xmlHttp.status == 200)
+                            {
+                                var myObj = JSON.parse(this.responseText);
+
+                                for (i = 0; i < xmlHttp.responseText.length; i++) {
+                                        xmlHttp[i] + "<br>";
+                                        }   
+
+                                heading = document.createElement('h1');
+                                document.body.appendChild(heading);
+                                document.getElementsByTagName('h1')[0].innerHTML = xmlHttp.responseText;
+                                var myObj = JSON.parse(this.responseText.toUpperCase());
+                                heading.id = "ajax";
+                                document.getElementById("ajax").innerHTML = myObj;
+
+                            }   
+                    
+                        };
+                        
+                        xmlHttp.send();
+                        
+                    }
+                
+                
+                
+                    // ALPHABET
+
+                    if(myTextbox.value.toUpperCase().includes("ALPHABET"))
+                    {
+                        
+                    }
+                }
+            }
+
+                
+                
+
+
+            window.onload = final
+        </script>
+    </head>
+    <body>                
+            
+            <input type="text" id="t">
+            <br>
+            <br>
+            <button type="button" id="b">Click me!</button>
+            <br>
+            <br>
+    </body>
+</html>
