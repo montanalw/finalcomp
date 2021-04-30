@@ -121,36 +121,30 @@
 
                     // AJAX
 
-                        // GET RID OF FUCKING COMMAS
-
                     if(myTextbox.value.toUpperCase().includes("AJAX"))
                     {
                                             
 
                         var xmlHttp = new XMLHttpRequest()   
-
-                        xmlHttp.open("GET", "advice.txt", true);
                     
                         xmlHttp.onreadystatechange = function()
                         {
                             if(xmlHttp.readyState == 4 && xmlHttp.status == 200)
                             {
-                                var myObj = JSON.parse(this.responseText);
-
-                                for (i = 0; i < xmlHttp.responseText.length; i++) {
-                                        xmlHttp[i] + "<br>";
-                                        }   
+                                var myObj = JSON.parse(xmlHttp.responseText)
 
                                 heading = document.createElement('h1');
                                 document.body.appendChild(heading);
-                                document.getElementsByTagName('h1')[0].innerHTML = xmlHttp.responseText;
-                                var myObj = JSON.parse(this.responseText.toUpperCase());
+                                var myObj = JSON.parse(xmlHttp.responseText.toUpperCase());
                                 heading.id = "ajax";
-                                document.getElementById("ajax").innerHTML = myObj;
+                                //document.getElementsByTagName('h1').innerHTML = xmlHttp.responseText;
+                                document.getElementById("ajax").innerHTML = myObj[0] + " " + myObj[1] + " " + myObj[2]+ " " + myObj[3] + " " + myObj[4] + " " + myObj[5] + " " + myObj[6] + " " + myObj[7] + " " + myObj[8];
+                                  
 
-                            }   
+                            } 
                     
                         };
+                        xmlHttp.open("GET", "advice.txt", true);
                         
                         xmlHttp.send();
                         
@@ -168,7 +162,7 @@
                         
                         let myTextbox = document.getElementById('t').value
 
-                        for(let i = 'ht'.charCodeAt(0); i <= 'th'.charCodeAt(0); i++)
+                        for(let i = 'a'.charCodeAt(0); i <= 'z'.charCodeAt(0); i++)
                         {
                             let myLetter = String.fromCharCode(i)
                             let myImage = document.createElement("img")
