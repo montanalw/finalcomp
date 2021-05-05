@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>RTOP Video Player Example</title>
+	<meta charSet="utf-8" />
+	<meta httpEquiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<link rel="icon" type="image/png" href="https://s3.amazonaws.com/images-charts-stats/favicon.ico">
+	<meta name="referrer" content="always" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="example/example.css" />
+	
+	<!-- required video player styles -->
+	<link rel="stylesheet" href="dist/css/rtop.videoPlayer.1.0.2.min.css" />
+	
+	<!-- font awesome if optional but highly recommended -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+	<!-- jquery is required (any version) -->
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+	
+	<!-- required video player js source -->
+	<script type="text/javascript" src="dist/js/rtop.videoPlayer.1.0.2.min.js"></script>
+</head>
+<body>
+	<div class="siteWrapper">
+		<div class="rtopVideoDocs">
+			<header>
+				<div class="innerPadding">
+					<div class="logoHeader">
+						
+						<span class="title">RTO+P Documentation</span>
+					</div>
+				</div>
+			</header>
+			<div class="row">
+				<div class="col col-12 col-md-6">
+					<div class="exampleVideo">
+						<div class="myVideo" id="my_video" data-video="./example/sample.mp4" data-poster="./example/sample.jpg" data-type='video/mp4'></div>
+					</div>
+				</div>
+				<div class="col col-12 col-md-6 documentation">
+					<div class="innerPadding">
+						<div class="titleBlock centerText">
+							
+							
+						</div>
+						<div class="block">
+							
+							<div class="optionBlock">
+							
+								<div class="hint">
+							
+								</div>
+								<pre>
+<code class=" hljs xml"><span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">"stylesheet"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"dist/css/rtop.videoPlayer.1.0.1.min.css"/</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">"stylesheet"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"https://use.fontawesome.com/releases/v5.8.1/css/all.css"</span> </span><span class="hljs-attribute">integrity</span>=<span class="hljs-value">"sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"</span><span class="hljs-attribute">crossorigin</span>=<span class="hljs-value">"anonymous"</span>/&gt;</code>
+								</pre>
+							</div>
+							<div class="optionBlock">
+							
+								<div class="hint">
+							
+								</div>
+								<pre>
+<code class=" hljs xml"><span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"https://code.jquery.com/jquery-3.4.1.min.js"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"dist/js/rtop.videoPlayer.1.0.1.min.js"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span></code>
+								</pre>
+							</div>
+							<div class="optionBlock">
+							
+								<div class="hint">
+							
+								</div>
+								<pre><code class=" hljs xml"><span class="hljs-comment">&lt;!-- HTML5 VIDEO TAG --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"my_video"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">video</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"sample.mp4"</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"video/mp4"</span> <span class="hljs-attribute">poster</span>=<span class="hljs-value">"sample.jpg"</span> <span class="hljs-attribute">playsinline</span>&gt;</span>
+  	<span class="hljs-tag">&lt;<span class="hljs-title">source</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"sample.mp4"</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"video/mp4"</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">video</span>&gt;</span>    
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+
+<span class="hljs-comment">&lt;!-- LAZY LOAD (preferred way for quicker page load)--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"my_video"</span> <span class="hljs-attribute">data-video</span>=<span class="hljs-value">"sample.mp4"</span> <span class="hljs-attribute">data-type</span>=<span class="hljs-value">"video/mp4"</span> <span class="hljs-attribute">data-poster</span>=<span class="hljs-value">"sample.jpg"</span>&gt;</span>    
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+</code></pre>
+							</div>
+							<div class="optionBlock">
+								
+								<pre><code class=" hljs javascript">$(document).ready(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span>{</span>
+  $(<span class="hljs-string">"#my_video"</span>).RTOP_VideoPlayer();
+});</code></pre>
+						
+							<pre><code class=" hljs javascript"><span class="hljs-keyword">var</span> vid = $(<span class="hljs-string">'#my_video'</span>);
+vid.RTOP_VideoPlayer();
+<span class="hljs-comment">// Listen to video events:</span>
+vid.on(<span class="hljs-string">'play.vid.rtop_videoplayer'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(event)</span> {</span>
+    ...
+})</code></pre>
+<pre><code class=" hljs javascript"><span class="hljs-keyword">var</span> vid = $(<span class="hljs-string">'#my_video'</span>).RTOP_VideoPlayer();
+
+<span class="hljs-comment">// play video</span>
+vid.RTOP_VideoPlayer('pause');
+
+<span class="hljs-comment">// go to time (in sec)</span>
+vid.RTOP_VideoPlayer('goTo', 10);
+
+<span class="hljs-comment">// pause video</span>
+vid.RTOP_VideoPlayer('pause');
+
+<span class="hljs-comment">// close modal</span>
+vid.RTOP_VideoPlayer('close');
+</code></pre>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			var vid = $('#my_video').RTOP_VideoPlayer({
+				showFullScreen: true,
+				showTimer: true,
+				showSoundControl: true
+			});
+		});
+	</script>
+</body>
+</html>

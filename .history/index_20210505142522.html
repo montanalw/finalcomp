@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Comp2130_finalproject</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+        <script>
+        
+            function final()
+            {
+
+                //gets the textbox
+                let myTextbox = document.getElementById("t")
+                let myButton = document.getElementById("b")
+
+                myButton.onclick = function() 
+                {
+
+                    // STORAGE HTML
+                            
+                        // pending demo and explanation
+
+                    if(myTextbox.value.toUpperCase().includes("STORAGE"))
+                    {
+                    let a = document.createElement('a')
+                    let linkText = document.createTextNode("storage.html")
+                    a.appendChild(linkText);
+                    a.title = "storage.html";
+                    a.href = "storage.html";
+                    document.body.appendChild(a) 
+                    }
+
+                    // ALIEN                                    
+                        
+                    // Set things up
+                        moveTimer = null 
+                        stepNumber = 0
+                        theAlien = document.getElementById("alienImg")
+                        
+
+                    //Move right
+
+                        function stepRight()
+                        {
+                            stepNumber = stepNumber + 1
+
+                            if(stepNumber > 30)
+                            {
+                                stepNumber = 0
+                            }
+
+                            theAlien.src = "/alien/alienrwalk" + stepNumber + ".gif"
+                        }
+
+                        function moveRight()
+                        {
+                            theAlien.style.left = parseInt(theAlien.style.left) + 1 + "px"
+                            stepRight()
+                        }
+
+                        function turnAround()
+                        {
+                            if(theAlien.offsetLeft == screenWidth)
+                            {                                        
+                                stopMoving()
+                                moveTimer = setInterval(moveLeft, 20)                 
+                            }
+                        }
+                    
+                        //Move left
+
+                        function stepLeft()
+                        {
+                            stepNumber = stepNumber + 1
+
+                            if(stepNumber > 30)
+                            {
+                                stepNumber = 0
+                            }
+
+                            theAlien.src = "/alien/alienlwalk" + stepNumber + ".gif"
+                        }
+
+                        function moveLeft()
+                        {
+                            theAlien.style.left = parseInt(theAlien.style.left) - 1 + "px"
+                            stepLeft()
+                        }
+
+                        //Toggle moving
+
+                        function toggleMoving()
+                        {
+                            if(moveTimer == null)
+                            {
+                                moveTimer = setInterval(moveRight, 20)
+                            }
+                        }
+
+                        //Stop Moving
+
+                        function stopMoving()
+                        {
+                            if(moveTimer != null)
+                            {
+                                clearInterval(moveTimer)
+                                moveTimer = null
+                            }
+                        }
+
+                    //Alien Values
+
+                    if(myTextbox.value.toUpperCase().includes("ALIEN"))
+                    {
+                        let alien = document.createElement('img');
+                        alien.src = "/alien/alienrwalk0.gif";
+                        document.body.appendChild(alien);
+                        alien.style.position = "absolute"
+                        alien.style.left = "30px";
+                        alien.style.top = "80px";
+                        alien.id = "alienImg"
+
+                    }
+
+                    if(myTextbox.value.toUpperCase().includes("WALK"))
+                        {
+                            toggleMoving()
+                        }
+                        
+                    if(myTextbox.value.toUpperCase().includes("RUN"))
+                    {
+                            
+                    }
+                    
+                   else if(myTextbox.value.toUpperCase().includes("STOP"))
+                    {
+                        clearInterval(moveTimer)
+                        moveTimer = null
+                        stopMoving()
+                    }
+
+                    if(myTextbox.value.toUpperCase().includes("BYE"))
+                    {
+                         document.getElementById("alienImg").style.display = "none" 
+                    }
+                           
+                             
+
+
+                    // JQUERY HTML
+
+                        // PENDING
+
+                    if(myTextbox.value.toUpperCase().includes("JQUERY"))
+                    {
+                        for (var i = 1; i < 5; i++) 
+                        {
+                            var jquery = document.createElement("img");
+                            jquery.src = "images/cage" + i + ".jpg";
+                            document.body.appendChild(jquery);
+                            jquery.id = "cage"                            
+
+                            $(jquery).width(200)
+                            $(function () {
+                            $($("img")[1]).click(function() {
+                                $(this).css('border', "solid 10px red");  
+                            });
+                            });
+                        }
+                    }
+
+                    // PLUGIN HTML
+                        
+                        // PENDING
+
+                    if(myTextbox.value.toUpperCase().includes("PLUGIN"))
+                    {
+                        
+                    }
+
+                    // AJAX
+
+                    if(myTextbox.value.toUpperCase().includes("AJAX"))
+                    {
+                                            
+
+                        var xmlHttp = new XMLHttpRequest()   
+                    
+                        xmlHttp.onreadystatechange = function()
+                        {
+                            if(xmlHttp.readyState == 4 && xmlHttp.status == 200)
+                            {
+                                var myObj = JSON.parse(xmlHttp.responseText)
+
+                                heading = document.createElement('h1');
+                                document.body.appendChild(heading);
+                                var myObj = JSON.parse(xmlHttp.responseText.toUpperCase());
+                                heading.id = "ajax";
+                                //document.getElementsByTagName('h1').innerHTML = xmlHttp.responseText;
+                                document.getElementById("ajax").innerHTML = myObj[0] + " " + myObj[1] + " " + myObj[2]+ " " + myObj[3] + " " + myObj[4] + " " + myObj[5] + " " + myObj[6] + " " + myObj[7] + " " + myObj[8];    
+
+                            } 
+                    
+                        };
+                        xmlHttp.open("GET", "advice.txt", true);
+                        
+                        xmlHttp.send();
+                        
+                    }
+                
+                
+                
+                    // ALPHABET
+
+                        // NOT YET IN REVERSE ORDER
+
+                    if(myTextbox.value.toUpperCase().includes("ALPHABET"))
+                    {
+        
+                        let myTextbox = document.getElementById('t').value
+
+                        for(let i = 'a'.charCodeAt(0); i <= 'z'.charCodeAt(0); i++)
+                        {
+                            let myLetter = String.fromCharCode(i)
+                            let myImage = document.createElement("img")
+                            myImage.id = myLetter 
+                            myImage.width = 40
+                            myImage.src = "/letters/" + myLetter + ".png"
+                            document.body.appendChild(myImage) 
+                        }   
+                
+                        let images = document.getElementsByTagName("img")
+
+                        for(let i = 0; i < images.length; i++)
+                        {
+                            images[i].onclick=function()
+                            {
+                                this.src = "letters/a.png"
+                            }
+                        }
+                    }   
+                }
+            }          
+                         
+            window.onload = final    
+
+        </script>
+    </head>
+    <body>                            
+        <input type="text" id="t">
+        <br>
+        <br>
+        <button type="button" id="b">Click me!</button>
+        <br>
+        <br>
+    </body>
+</html>

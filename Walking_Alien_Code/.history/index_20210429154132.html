@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Assignment02</title>
+        <style>
+            body, html{padding:0; margin: 0;}
+        </style>
+        <script>
+            
+            window.onload=setThingsUp
+
+            currentStepNumber = 13
+            movingTimer = null
+            screenWidth = window.innerWidth
+            jumping = false
+
+            function setThingsUp()
+            {                
+                theAlien = document.getElementById("al")
+                bigBox = document.getElementById("bigbox")
+                littleBox = document.getElementById("littebox")
+            }
+
+            function willCrashIntoBox()
+            {
+                if(parseInt(theAlien.style.left) == parseInt(bigBox.style.left) - 70)
+                {                                        
+                    stopMoving()
+                    movingTimer = setInterval(moveLeft, 20)                 
+                }
+
+                /*                              // Unfinished 
+                else if(parseInt(theAlien.style.left) == parseInt(littleBox.style.left))
+                {
+                    littleBox.style.left = parseInt(littleBox.style.left) + 1 + "px"
+                }
+                */
+            }
+            
+            function stepRight()
+            {                
+                currentStepNumber++
+                
+                if(currentStepNumber > 30)
+                {
+                    currentStepNumber = 0
+                }
+                
+                theAlien.src = "/Images/alienrwalk" + currentStepNumber + ".gif"                
+            }
+            
+            function moveRight()
+            {         
+                willCrashIntoBox()            
+                stepRight()            
+                theAlien.style.left = parseInt(theAlien.style.left) + 1 + "px"                
+
+                if(parseInt(theAlien.style.left) == screenWidth - 70)
+                {
+                    stopMoving()
+                    movingTimer = setInterval(moveLeft, 20)                    
+                }
+            }
+
+            function stepLeft()
+            {                
+                currentStepNumber++
+
+                if(currentStepNumber > 30)
+                {
+                    currentStepNumber = 0
+                }
+                                
+                theAlien.src = "/Images/alienlwalk" + currentStepNumber + ".gif"                
+            }
+
+            function moveLeft()
+            {
+                stepLeft()
+                theAlien.style.left = parseInt(theAlien.style.left) - 1 + "px"
+                
+                if(parseInt(theAlien.style.left) == -20)
+                {
+                    stopMoving()
+                    movingTimer = setInterval(moveRight, 20)                    
+                }
+            }            
+
+            function stopMoving ()
+            {
+                if(movingTimer != null)
+                {
+                    clearInterval(movingTimer)
+                    movingTimer = null
+                }
+            }
+
+        
+
+            function handleKeyDown(e)
+            {
+                if(e.which == 39) 
+                {                    
+                    if(movingTimer == null)
+                    {                        
+                        movingTimer = setInterval(moveRight, 20)                        
+                    }
+                }
+
+                else if(e.which == 37) 
+                {                    
+                    if(movingTimer == null)
+                    {
+                        movingTimer = setInterval(moveLeft, 20)                        
+                    }
+                }
+
+                else if(e.which == 40) 
+                {
+                    stopMoving()
+                }                
+            }
+            
+            window.onkeydown=handleKeyDown
+
+        </script>
+    </head>
+
+    <body>
+        
+        <img src="/Images/alienrwalk13.gif" id="al" style="position:absolute;left:9px;top:200px;">
+        <img src="/Images/bigbox.png" id="bigbox" style="position:absolute;left:400px;top:195px;">
+        <img src="/Images/littlebox.png" id="littlebox" style="position:absolute;left:200px;top:255px;">
+        
+        <div id="background" style="width: 100vw; height: 100vh; background-image: url('Images/background.jpg'); background-repeat: no-repeat; background-size: cover; position: absolute; top: 0; left: 0; z-index: -1;"></div>
+    </body>
+
+</html>
