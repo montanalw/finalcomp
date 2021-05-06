@@ -1,0 +1,42 @@
+html, body {
+    background-color: rgb(149, 221, 255);
+}
+
+#bank {
+    width: 150px;
+    height: 150px;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+}
+
+p {
+    text-align: center;
+    font-size: 18px;
+}
+
+#result {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    max-width: 150px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.button {
+    background-color:papayawhip;
+    border-radius: 20px;
+    font-size: 14px;
+    padding: 5px;
+    border-color: peachpuff;
+}

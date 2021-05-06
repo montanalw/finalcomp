@@ -1,9 +1,41 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>its working yay</title>
-    </head>
-    <body>
-        <h1>hello we talk about storage here (idk what it is tbh)</h1>
-    </body>
+<head>
+    <link rel="stylesheet" href="storage.css" />
+<script>
+function clickCounter() {
+  if(typeof(Storage) !== "undefined") {
+    if (localStorage.clickcount) {
+      localStorage.clickcount = Number(localStorage.clickcount)+1;
+    } else {
+      localStorage.clickcount = 1;
+    }
+    document.getElementById("result").innerHTML = "You have earned " + localStorage.clickcount + " dollars!";
+  } else {
+    document.getElementById("result").innerHTML = "Sorry, your browser does not support web storage...";
+  }
+}
+</script>
+</head>
+<body>
+
+<div class="row">
+
+    <div class="col">
+        <img id="bank" src="bank.svg" />
+        <p>The Bank</p>
+        <br>
+        <div id="result"></div>
+    </div>
+
+    <div class="col">
+        <img id="bank" src="dollar.svg" />
+        <p>Money you earn</p>
+        <p><button onclick="clickCounter()" class="button" type="button">Click to earn some money</button></p>
+    </div>
+
+</div>
+<p>Click the money to see your account balance rise!</p>
+
+</body>
 </html>
