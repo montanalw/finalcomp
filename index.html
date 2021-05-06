@@ -17,9 +17,9 @@
                 myButton.onclick = function() 
                 {
 
-                    // STORAGE HTML
+                    // STORAGE HTML - DEMO COMPLETE
                             
-                        // pending demo and explanation
+                        // pending explanation
 
                     if(myTextbox.value.toUpperCase().includes("STORAGE"))
                     {
@@ -56,67 +56,64 @@
 
                     function moveRight()
                     {
-                        turnAround
+                        hitRightSide()
                         stepRight()
                         theAlien.style.left = parseInt(theAlien.style.left) + 1 + "px"
                                             
                     }
 
-                    function turnAround()
+                    function hitRightSide()
                     {            
-                        
-                        /*function hitRightSide()
+                        var widthOfTheWindow = window.innerWidth - 96
+
+                        if(theAlien.offsetLeft == widthOfTheWindow)
                         {
-                            var widthOfTheWindow = window.innerWidth - 96
+                            clearInterval(moveTimer)
+                            moveTimer = null
 
-                            if(theAlien.offsetLeft == widthOfTheWindow)
+                            if(moveTimer == null)
                             {
-                                clearInterval(moveTimer)
-                                moveTimer = null
-
-                                if(moveTimer == null)
-                                {
-                                    moveTimer = setInterval(moveLeft, 20)
-                                }
+                                moveTimer = setInterval(moveLeft, 10)
                             }
-                        }*/
-                        //if(parseInt(theAlien.style.left) == parseInt(screenWidth) - 96)
-                        //{                                        
-                            //stopMoving()
-                            //moveTimer = setInterval(moveLeft, 20)  
-
-
-                            
-                            // clearInterval(moveTimer)
-                            // moveTimer = null
-
-                            //if(moveTimer == null)
-                            //{
-                            //    moveTimer = setInterval(moveLeft, 20)
-                            //}               
-                        //
+                        }
                     }
                     
                     //Move left
 
                     function stepLeft()
-                    {
-                        stepNumber = stepNumber + 1
-
-                        if(stepNumber > 30)
                         {
-                            stepNumber = 0
+                            stepNumber = stepNumber + 1
+
+                            if(stepNumber > 30)
+                            {
+                                stepNumber = 0
+                            }
+                            
+                            theAlien.src = "/alien/alienlwalk" + stepNumber + ".gif"
                         }
 
-                        theAlien.src = "/alien/alienlwalk" + stepNumber + ".gif"
-                    }
+                        function moveLeft()
+                        {
+                            hitLeftSide()
+                            stepLeft()
+                            theAlien.style.left = parseInt(theAlien.style.left) - 1 + "px"
+                        }
 
-                    function moveLeft()
-                    {
-                        stepLeft()
-                        theAlien.style.left = parseInt(theAlien.style.left) - 1 + "px"
-                                            
-                    }
+                        function hitLeftSide(){
+    
+                        if(theAlien.offsetLeft <= 0)
+
+                            {
+                                clearInterval(moveTimer)
+                                    moveTimer = null
+
+                                    if(moveTimer == null)
+                                    {
+                                        moveTimer = setInterval(moveRight, 10)
+                                    }
+                            }
+                        }
+
 
                     //Toggle moving
 
@@ -124,7 +121,53 @@
                     {
                         if(moveTimer == null)
                         {
-                            moveTimer = setInterval(moveRight, 20)
+                            moveTimer = setInterval(moveRight, 10)
+                        }
+
+                        hitLeftSide()
+                        hitRightSide()
+
+                    }
+
+                    function toggleRun()
+                    {
+                        if(moveTimer == null)
+                        {
+                            moveTimer = setInterval(moveRight, 1)
+                        }
+
+                        runLeftSide()
+                        runRightSide()
+                    }
+
+                    function runLeftSide(){
+    
+                    if(theAlien.offsetLeft <= 0)
+
+                        {
+                            clearInterval(moveTimer)
+                                moveTimer = null
+
+                                if(moveTimer == null)
+                                {
+                                    moveTimer = setInterval(moveRight, 1)
+                                }
+                        }
+                    }
+
+                    function runRightSide()
+                    {            
+                        var widthOfTheWindow = window.innerWidth - 96
+
+                        if(theAlien.offsetLeft == widthOfTheWindow)
+                        {
+                            clearInterval(moveTimer)
+                            moveTimer = null
+
+                            if(moveTimer == null)
+                            {
+                                moveTimer = setInterval(moveLeft, 1)
+                            }
                         }
                     }
 
@@ -156,11 +199,14 @@
                     if(myTextbox.value.toUpperCase().includes("WALK"))
                         {
                             toggleMoving()
+                            hitRightSide()
                         }
                         
-                    if(myTextbox.value.toUpperCase().includes("RUN"))
+                    else if(myTextbox.value.toUpperCase().includes("RUN"))
                     {
-                            
+                            toggleRun()
+                            runRightSide()
+                            runLeftSide()
                     }
                     
                    else if(myTextbox.value.toUpperCase().includes("STOP"))
