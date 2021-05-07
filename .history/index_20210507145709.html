@@ -36,9 +36,7 @@
                     stepNumber = 0
                     theAlien = document.getElementById("alienImg")     
                     walking = null
-                    running = null          
-                    right = true
-                    left = null                            
+                    running = null                                      
 
                     //Move right
 
@@ -58,8 +56,7 @@
                     {
                         var widthOfTheWindow = window.innerWidth - 96
                         
-                        right = true
-                        left = false
+                        
                         stepRight()
                         theAlien.style.left = parseInt(theAlien.style.left) + 1 + "px"
                                             
@@ -69,12 +66,12 @@
                             
                             if(walking)
                             {
-                                moveTimer = setInterval(moveLeft, 100)
+                                moveTimer = setInterval(moveLeft, 10)
                             }
 
                             else if(running)
                             {
-                                moveTimer = setInterval(moveLeft, 10)
+                                moveTimer = setInterval(moveLeft, 100)
                             }                            
                         }
                     }                    
@@ -95,8 +92,7 @@
 
                     function moveLeft()
                     {
-                        left = true
-                        right = false
+                                                    
                         stepLeft()
                         theAlien.style.left = parseInt(theAlien.style.left) + 1 + "px"
                                             
@@ -106,13 +102,57 @@
                             
                             if(walking)
                             {
-                                moveTimer = setInterval(moveLeft, 100)
+                                moveTimer = setInterval(moveLeft, 10)
                             }
 
                             else if(running)
                             {
-                                moveTimer = setInterval(moveLeft, 10)
+                                moveTimer = setInterval(moveLeft, 100)
                             }                            
+                        }
+                    }
+
+
+                    function toggleRun()
+                    {
+                        
+                        if(moveTimer == null)
+                        {
+                            moveTimer = setInterval(moveRight, 1)
+                        }
+
+                        runLeftSide()
+                        runRightSide()
+                    }
+
+                    function runLeftSide(){
+    
+                    if(theAlien.offsetLeft <= 0)
+
+                        {
+                            clearInterval(moveTimer)
+                            moveTimer = null
+
+                            if(moveTimer == null)
+                            {
+                                moveTimer = setInterval(moveRight, 1)
+                            }
+                        }
+                    }
+
+                    function runRightSide()
+                    {            
+                        var widthOfTheWindow = window.innerWidth - 96
+
+                        if(theAlien.offsetLeft == widthOfTheWindow)
+                        {
+                            clearInterval(moveTimer)
+                            moveTimer = null
+
+                            if(moveTimer == null)
+                            {
+                                moveTimer = setInterval(moveLeft, 1)
+                            }
                         }
                     }
 
@@ -148,7 +188,6 @@
                             if(walking === null)
                             {                                
                                 walking = true
-                                moveTimer = setInterval(moveRight, 100)
                             }
                         }
 
@@ -218,7 +257,9 @@
                     // AJAX - COMPLETE
                         
                     if(myTextbox.value.toUpperCase().includes("AJAX"))
-                    {                                            
+                    {
+                                            
+
                         var xmlHttp = new XMLHttpRequest()   
                     
                         xmlHttp.onreadystatechange = function()
@@ -230,8 +271,10 @@
                                 heading = document.createElement('h1');
                                 document.body.appendChild(heading);
                                 var myObj = JSON.parse(xmlHttp.responseText.toUpperCase());
-                                heading.id = "ajax";                                
+                                heading.id = "ajax";
+                                //document.getElementsByTagName('h1').innerHTML = xmlHttp.responseText;
                                 document.getElementById("ajax").innerHTML = myObj[0] + " " + myObj[1] + " " + myObj[2]+ " " + myObj[3] + " " + myObj[4] + " " + myObj[5] + " " + myObj[6] + " " + myObj[7] + " " + myObj[8];    
+
                             } 
                     
                         };

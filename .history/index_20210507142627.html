@@ -34,11 +34,7 @@
                     // Set things up
                     moveTimer = null 
                     stepNumber = 0
-                    theAlien = document.getElementById("alienImg")     
-                    walking = null
-                    running = null          
-                    right = true
-                    left = null                            
+                    theAlien = document.getElementById("alienImg")                                            
 
                     //Move right
 
@@ -56,69 +52,124 @@
 
                     function moveRight()
                     {
-                        var widthOfTheWindow = window.innerWidth - 96
-                        
-                        right = true
-                        left = false
+                        hitRightSide()
                         stepRight()
                         theAlien.style.left = parseInt(theAlien.style.left) + 1 + "px"
                                             
+                    }
+
+                    function hitRightSide()
+                    {            
+                        var widthOfTheWindow = window.innerWidth - 96
+
                         if(theAlien.offsetLeft == widthOfTheWindow)
                         {
-                            stopMoving                            
-                            
-                            if(walking)
-                            {
-                                moveTimer = setInterval(moveLeft, 100)
-                            }
+                            clearInterval(moveTimer)
+                            moveTimer = null
 
-                            else if(running)
+                            if(moveTimer == null)
                             {
                                 moveTimer = setInterval(moveLeft, 10)
-                            }                            
+                            }
                         }
-                    }                    
+                    }
                     
                     //Move left
 
                     function stepLeft()
-                    {
-                        stepNumber = stepNumber + 1
-
-                        if(stepNumber > 30)
                         {
-                            stepNumber = 0
+                            stepNumber = stepNumber + 1
+
+                            if(stepNumber > 30)
+                            {
+                                stepNumber = 0
+                            }
+                            
+                            theAlien.src = "/alien/alienlwalk" + stepNumber + ".gif"
                         }
-                        
-                        theAlien.src = "/alien/alienlwalk" + stepNumber + ".gif"
+
+                        function moveLeft()
+                        {
+                            hitLeftSide()
+                            stepLeft()
+                            theAlien.style.left = parseInt(theAlien.style.left) - 1 + "px"
+                        }
+
+                        function hitLeftSide(){
+    
+                        if(theAlien.offsetLeft <= 0)
+
+                            {
+                                clearInterval(moveTimer)
+                                    moveTimer = null
+
+                                    if(moveTimer == null)
+                                    {
+                                        moveTimer = setInterval(moveRight, 10)
+                                    }
+                            }
+                        }
+
+                    //Toggle moving
+
+                    function toggleMoving()
+                    {
+                        if(moveTimer == null)
+                        {
+                            moveTimer = setInterval(moveRight, 10)
+                        }
+
+                        hitLeftSide()
+                        hitRightSide()
+
                     }
 
-                    function moveLeft()
+                    function toggleRun()
                     {
-                        left = true
-                        right = false
-                        stepLeft()
-                        theAlien.style.left = parseInt(theAlien.style.left) + 1 + "px"
-                                            
-                        if(theAlien.offsetLeft <= 0)
+                        
+                        if(moveTimer == null)
                         {
-                            stopMoving                            
-                            
-                            if(walking)
-                            {
-                                moveTimer = setInterval(moveLeft, 100)
-                            }
+                            moveTimer = setInterval(moveRight, 1)
+                        }
 
-                            else if(running)
+                        runLeftSide()
+                        runRightSide()
+                    }
+
+                    function runLeftSide(){
+    
+                    if(theAlien.offsetLeft <= 0)
+
+                        {
+                            clearInterval(moveTimer)
+                                moveTimer = null
+
+                                if(moveTimer == null)
+                                {
+                                    moveTimer = setInterval(moveRight, 1)
+                                }
+                        }
+                    }
+
+                    function runRightSide()
+                    {            
+                        var widthOfTheWindow = window.innerWidth - 96
+
+                        if(theAlien.offsetLeft == widthOfTheWindow)
+                        {
+                            clearInterval(moveTimer)
+                            moveTimer = null
+
+                            if(moveTimer == null)
                             {
-                                moveTimer = setInterval(moveLeft, 10)
-                            }                            
+                                moveTimer = setInterval(moveLeft, 1)
+                            }
                         }
                     }
 
                     //Stop Moving
 
-                    function stopMoving()
+                    function stopMoving ()
                     {
                         if(moveTimer != null)
                         {
@@ -140,31 +191,24 @@
                         alien.id = "alienImg"
                     }
 
+                    function handleMove()
+                    {
+
+
 
                     if(myTextbox.value.toUpperCase().includes("WALK"))
-                        {                            
-                            stopMoving()
-                            running = null
-                            if(walking === null)
-                            {                                
-                                walking = true
-                                moveTimer = setInterval(moveRight, 100)
-                            }
+                        {
+                            toggleMoving()
+                            hitRightSide()
                         }
 
                     else if(myTextbox.value.toUpperCase().includes("RUN"))
-                        {                            
-                            walking = null
+                        {
                             clearInterval(moveTimer)    
                             moveTimer = null
-                            
+                            toggleRun()
                             runLeftSide()
                             runRightSide()
-                            if(running === null)
-                            {
-                                toggleRun()
-                                running = true
-                            }
                         }
                         
                    else if(myTextbox.value.toUpperCase().includes("STOP"))
@@ -179,7 +223,7 @@
                          document.getElementById("alienImg").style.display = "none" 
                     }
                            
-                
+                }
                              
 
 
@@ -218,7 +262,9 @@
                     // AJAX - COMPLETE
                         
                     if(myTextbox.value.toUpperCase().includes("AJAX"))
-                    {                                            
+                    {
+                                            
+
                         var xmlHttp = new XMLHttpRequest()   
                     
                         xmlHttp.onreadystatechange = function()
@@ -230,8 +276,10 @@
                                 heading = document.createElement('h1');
                                 document.body.appendChild(heading);
                                 var myObj = JSON.parse(xmlHttp.responseText.toUpperCase());
-                                heading.id = "ajax";                                
+                                heading.id = "ajax";
+                                //document.getElementsByTagName('h1').innerHTML = xmlHttp.responseText;
                                 document.getElementById("ajax").innerHTML = myObj[0] + " " + myObj[1] + " " + myObj[2]+ " " + myObj[3] + " " + myObj[4] + " " + myObj[5] + " " + myObj[6] + " " + myObj[7] + " " + myObj[8];    
+
                             } 
                     
                         };
@@ -271,7 +319,8 @@
                 }
             }          
                          
-            window.onload = final 
+            window.onload = final    
+            window.onload = handleMove()
         </script>
     </head>
     <body>                            

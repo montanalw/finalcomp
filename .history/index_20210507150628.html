@@ -95,8 +95,7 @@
 
                     function moveLeft()
                     {
-                        left = true
-                        right = false
+                                                    
                         stepLeft()
                         theAlien.style.left = parseInt(theAlien.style.left) + 1 + "px"
                                             
@@ -218,7 +217,9 @@
                     // AJAX - COMPLETE
                         
                     if(myTextbox.value.toUpperCase().includes("AJAX"))
-                    {                                            
+                    {
+                                            
+
                         var xmlHttp = new XMLHttpRequest()   
                     
                         xmlHttp.onreadystatechange = function()
@@ -230,8 +231,10 @@
                                 heading = document.createElement('h1');
                                 document.body.appendChild(heading);
                                 var myObj = JSON.parse(xmlHttp.responseText.toUpperCase());
-                                heading.id = "ajax";                                
+                                heading.id = "ajax";
+                                //document.getElementsByTagName('h1').innerHTML = xmlHttp.responseText;
                                 document.getElementById("ajax").innerHTML = myObj[0] + " " + myObj[1] + " " + myObj[2]+ " " + myObj[3] + " " + myObj[4] + " " + myObj[5] + " " + myObj[6] + " " + myObj[7] + " " + myObj[8];    
+
                             } 
                     
                         };
