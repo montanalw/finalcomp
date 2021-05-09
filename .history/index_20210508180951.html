@@ -34,7 +34,7 @@
                     movingTimer = null
                     walking = null
                     running = null
-                    alienCheck = true   
+                    alienCheck = null   
                     stepNumber = 0
                     left = null
                     right = true
@@ -148,14 +148,14 @@
                             alienCheck = true
 
                         //}   
-                        //else
-                        //{   
-                          //  return   
-                        //}   
+                        else
+                        {   
+                            return   
+                        }   
                     }
                     
                     
-                    else if(myTextbox.value.toUpperCase().includes("WALK") && alienCheck == true)
+                    else if(myTextbox.value.toUpperCase().includes("WALK"))
                     {
                         stopMoving()
                         running = null
@@ -194,11 +194,17 @@
                         }
                     }
 
-                    else if(myTextbox.value.toUpperCase().includes("STOP") /* && alienCheck == true */)
+                    else if(myTextbox.value.toUpperCase().includes("STOP"))
                     {
-                        // stopMoving()
+                        stopMoving()
                         clearInterval(movingTimer)
-                        movingTimer = null                 
+                   
+                        movingTimer = null
+                        walking = null
+                        running = null
+                        alienCheck = null
+                        left = null
+                        right = null 
                     }
 
                     else if(myTextbox.value.toUpperCase().includes("BYE"))

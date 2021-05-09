@@ -194,11 +194,26 @@
                         }
                     }
 
-                    else if(myTextbox.value.toUpperCase().includes("STOP") /* && alienCheck == true */)
+                    else if(myTextbox.value.toUpperCase().includes("STOP") && alienCheck == true)
                     {
-                        // stopMoving()
+                        stopMoving()
                         clearInterval(movingTimer)
-                        movingTimer = null                 
+                        movingTimer = null
+
+                        if(walking === null)
+                        {
+                            walking = false
+                            
+                            if(right)
+                            {
+                                movingTimer = clearInterval(moveRight, 100)
+                            }
+                            if(left)
+                            {
+                                movingTimer = setInterval(moveLeft, 100)
+                            }
+                        }
+                 
                     }
 
                     else if(myTextbox.value.toUpperCase().includes("BYE"))

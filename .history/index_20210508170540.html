@@ -21,200 +21,13 @@
 
                     if(myTextbox.value.toUpperCase().includes("STORAGE"))
                     {
-                        let a = document.createElement('a')
-                        let linkText = document.createTextNode("storage.html")
-                        a.appendChild(linkText);
-                        a.title = "storage.html";
-                        a.href = "storage.html";
-                        document.body.appendChild(a) 
+                    let a = document.createElement('a')
+                    let linkText = document.createTextNode("storage.html")
+                    a.appendChild(linkText);
+                    a.title = "storage.html";
+                    a.href = "storage.html";
+                    document.body.appendChild(a) 
                     }
-
-                    // Set things up
-                 
-                    movingTimer = null
-                    walking = null
-                    running = null
-                    alienCheck = true   
-                    stepNumber = 0
-                    left = null
-                    right = true
-                    alien = document.getElementById("alien")
-                
-
-                    // Stop alien
-
-                    function stopMoving()
-                    {
-                        if(movingTimer != null)
-                        {
-                            clearInterval(movingTimer)
-                            movingTimer = null
-                        }
-                    }
-                
-                    function rightStep()
-                    {
-                        stepNumber = stepNumber + 1
-                            
-                        if(stepNumber > 30)
-                        {
-                            stepNumber = 0
-                        }
-                        alien.src = "/alien/alienrwalk" + stepNumber + '.gif'
-
-                    }
-
-                    //Move Right
-
-                    function moveRight()
-                    {
-                        right = true
-                        left = false
-                        rightStep()
-                        alien.style.left = parseInt(alien.style.left) + 1 + 'px'
-                        
-                        // Stop alien from walking off the screen
-
-                        if(parseInt(alien.style.left) == innerWidth - 76)
-                        {
-                            stopMoving()
-                            if(running)
-                            {
-                                movingTimer = setInterval(moveLeft, 10)
-                            }
-                            
-                            else if(walking)
-                            {
-                                movingTimer = setInterval(moveLeft, 100)
-                            }
-                        } 
-                    }
-
-                    function leftStep()
-                    {
-                        stepNumber = stepNumber + 1
-                    
-                        if(stepNumber > 30)
-                        {
-                            stepNumber = 0
-                        }
-                        alien.src = "/alien/alienlwalk" + stepNumber + '.gif'
-                        
-                    }
-
-                    // Move left
-
-                    function moveLeft()
-                    {
-                        left = true
-                        right = false
-                        leftStep()
-                        alien.style.left = parseInt(alien.style.left) - 1 + 'px'
-
-                        // Stop alien from walking off the screen
-                        if(parseInt(alien.style.left) == -20)
-                        {
-                            stopMoving()
-                            if(running)
-                            {
-                                movingTimer = setInterval(moveRight, 10)
-                            }
-                            
-                            else if(walking)
-                            {
-                                movingTimer = setInterval(moveRight, 100)
-                            }
-                            
-                        }
-
-                    } 
-    
-                    
-                    // Textbox values for alien
-
-                    if(myTextbox.value.toUpperCase().includes("ALIEN"))
-                    {
-                        //if(alienCheck === null)
-                        //{
-                            // Create the alien image
-                            alien = document.createElement('img')
-                            alien.id  = "alien"
-                            alien.style.display = "block"
-                            alien.src = "/alien/alienrwalk0.gif"
-                            alien.style.position ='absolute'
-                            alien.style.left = "10px"
-                            alien.style.top = "80px";
-                            document.body.appendChild(alien) 
-                            alienCheck = true
-
-                        //}   
-                        //else
-                        //{   
-                          //  return   
-                        //}   
-                    }
-                    
-                    
-                    else if(myTextbox.value.toUpperCase().includes("WALK") && alienCheck == true)
-                    {
-                        stopMoving()
-                        running = null
-                        
-                        if(walking === null)
-                        {
-                            walking = true
-                            
-                            if(right)
-                            {
-                                movingTimer = setInterval(moveRight, 100)
-                            }
-                            if(left)
-                            {
-                                movingTimer = setInterval(moveLeft, 100)
-                            }
-                        }
-                    }
-                    
-                    else if(myTextbox.value.toUpperCase().includes("RUN"))
-                    {
-                        stopMoving()
-                        walking = null
-
-                        if(running === null)
-                        {
-                            running = true
-                            if(right)
-                            {
-                                movingTimer = setInterval(moveRight, 10)
-                            }
-                            if(left)
-                            {
-                                movingTimer = setInterval(moveLeft, 10)
-                            }
-                        }
-                    }
-
-                    else if(myTextbox.value.toUpperCase().includes("STOP") /* && alienCheck == true */)
-                    {
-                        // stopMoving()
-                        clearInterval(movingTimer)
-                        movingTimer = null                 
-                    }
-
-                    else if(myTextbox.value.toUpperCase().includes("BYE"))
-                    {
-                        alien.style.display = "none"
-                        
-                        stopMoving()
-                        movingTimer = null
-                        walking = null
-                        running = null
-                        alienCheck = null
-                        left = null
-                        right = true
-                    }
-
-                    
 
                     // ALIEN - WORKING ON IT                                    
                         
@@ -366,7 +179,7 @@
                          document.getElementById("alienImg").style.display = "none" 
                     }
                            
-                */
+                
                              
 
 

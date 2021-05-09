@@ -29,20 +29,19 @@
                         document.body.appendChild(a) 
                     }
 
-                    // Set things up
-                 
+                    // global variables
+                    storageCheck = null
+                    alienCheck = null
+                    stepNumber = 0
                     movingTimer = null
                     walking = null
                     running = null
-                    alienCheck = true   
-                    stepNumber = 0
                     left = null
                     right = true
-                    alien = document.getElementById("alien")
+                    alien = document.getElementById("alien")   
                 
 
-                    // Stop alien
-
+                    // handle alien movement
                     function stopMoving()
                     {
                         if(movingTimer != null)
@@ -64,8 +63,6 @@
 
                     }
 
-                    //Move Right
-
                     function moveRight()
                     {
                         right = true
@@ -73,8 +70,7 @@
                         rightStep()
                         alien.style.left = parseInt(alien.style.left) + 1 + 'px'
                         
-                        // Stop alien from walking off the screen
-
+                        // keeps alien from walking off the screen
                         if(parseInt(alien.style.left) == innerWidth - 76)
                         {
                             stopMoving()
@@ -102,60 +98,53 @@
                         
                     }
 
-                    // Move left
+                function moveLeft()
+                {
+                    left = true
+                    right = false
+                    leftStep()
+                    alien.style.left = parseInt(alien.style.left) - 1 + 'px'
 
-                    function moveLeft()
+                    // keeps alien from walking off the screen
+                    if(parseInt(alien.style.left) == -20)
                     {
-                        left = true
-                        right = false
-                        leftStep()
-                        alien.style.left = parseInt(alien.style.left) - 1 + 'px'
-
-                        // Stop alien from walking off the screen
-                        if(parseInt(alien.style.left) == -20)
+                        stopMoving()
+                        if(running)
                         {
-                            stopMoving()
-                            if(running)
-                            {
-                                movingTimer = setInterval(moveRight, 10)
-                            }
-                            
-                            else if(walking)
-                            {
-                                movingTimer = setInterval(moveRight, 100)
-                            }
-                            
+                            movingTimer = setInterval(moveRight, 10)
                         }
-
-                    } 
-    
-                    
-                    // Textbox values for alien
-
-                    if(myTextbox.value.toUpperCase().includes("ALIEN"))
+                        
+                        else if(walking)
+                        {
+                            movingTimer = setInterval(moveRight, 100)
+                        }
+                        
+                    }
+                                    
+                    // check to see if the word "alien" is in the textbox
+                    else ifif(myTextbox.value.toUpperCase().includes("ALIEN"))
                     {
-                        //if(alienCheck === null)
-                        //{
-                            // Create the alien image
+                        if(alienCheck === null)
+                        {
+                            // create alien
                             alien = document.createElement('img')
                             alien.id  = "alien"
                             alien.style.display = "block"
                             alien.src = "/alien/alienrwalk0.gif"
                             alien.style.position ='absolute'
-                            alien.style.left = "10px"
-                            alien.style.top = "80px";
+                            alien.style.left = "0px"
                             document.body.appendChild(alien) 
                             alienCheck = true
 
-                        //}   
-                        //else
-                        //{   
-                          //  return   
-                        //}   
+                        }
+                        else
+                        {   
+                            return   
+                        }   
                     }
                     
-                    
-                    else if(myTextbox.value.toUpperCase().includes("WALK") && alienCheck == true)
+                    // check to see if the word walk is types and if the alien is on the screen
+                    else if(myTextbox.value.toLowerCase().includes("walk") && alienCheck == true)
                     {
                         stopMoving()
                         running = null
@@ -175,7 +164,7 @@
                         }
                     }
                     
-                    else if(myTextbox.value.toUpperCase().includes("RUN"))
+                    else if(myTextbox.value.toLowerCase().includes("run") && alienCheck == true)
                     {
                         stopMoving()
                         walking = null
@@ -194,27 +183,25 @@
                         }
                     }
 
-                    else if(myTextbox.value.toUpperCase().includes("STOP") /* && alienCheck == true */)
+                    else if(myTextbox.value.toLowerCase().includes("stop") && alienCheck == true)
                     {
-                        // stopMoving()
-                        clearInterval(movingTimer)
-                        movingTimer = null                 
+                        stopMoving()
                     }
 
-                    else if(myTextbox.value.toUpperCase().includes("BYE"))
+                    else if(myTextbox.value.toLowerCase().includes("bye") && alienCheck == true)
                     {
                         alien.style.display = "none"
                         
                         stopMoving()
+                        alienCheck = null
                         movingTimer = null
                         walking = null
                         running = null
-                        alienCheck = null
                         left = null
                         right = true
                     }
 
-                    
+                }
 
                     // ALIEN - WORKING ON IT                                    
                         

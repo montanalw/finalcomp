@@ -194,11 +194,12 @@
                         }
                     }
 
-                    else if(myTextbox.value.toUpperCase().includes("STOP") /* && alienCheck == true */)
+                    else if(myTextbox.value.toUpperCase().includes("STOP") && alienCheck == true)
                     {
-                        // stopMoving()
-                        clearInterval(movingTimer)
-                        movingTimer = null                 
+                        stopMoving()
+                        clearTimeout(movingTimer)
+                        movingTimer = null
+                 
                     }
 
                     else if(myTextbox.value.toUpperCase().includes("BYE"))

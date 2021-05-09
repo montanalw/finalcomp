@@ -34,7 +34,7 @@
                     movingTimer = null
                     walking = null
                     running = null
-                    alienCheck = true   
+                    alienCheck = null
                     stepNumber = 0
                     left = null
                     right = true
@@ -130,13 +130,12 @@
                     } 
     
                     
-                    // Textbox values for alien
-
+                    // check to see if the word "alien" is in the textbox
                     if(myTextbox.value.toUpperCase().includes("ALIEN"))
                     {
-                        //if(alienCheck === null)
-                        //{
-                            // Create the alien image
+                        if(alienCheck === null)
+                        {
+                            // create alien
                             alien = document.createElement('img')
                             alien.id  = "alien"
                             alien.style.display = "block"
@@ -147,15 +146,16 @@
                             document.body.appendChild(alien) 
                             alienCheck = true
 
-                        //}   
-                        //else
-                        //{   
-                          //  return   
-                        //}   
+                        }   
+                        else
+                        {   
+                            return   
+                        }   
                     }
                     
-                    
-                    else if(myTextbox.value.toUpperCase().includes("WALK") && alienCheck == true)
+                    // Textbox values for alien
+
+                    else if(myTextbox.value.toUpperCase().includes("WALK"))
                     {
                         stopMoving()
                         running = null
@@ -194,11 +194,13 @@
                         }
                     }
 
-                    else if(myTextbox.value.toUpperCase().includes("STOP") /* && alienCheck == true */)
+                    else if(myTextbox.value.toUpperCase().includes("STOP"))
                     {
-                        // stopMoving()
+                        stopMoving()
                         clearInterval(movingTimer)
-                        movingTimer = null                 
+                        movingTimer = null
+                        walking = true
+                        running = null
                     }
 
                     else if(myTextbox.value.toUpperCase().includes("BYE"))
