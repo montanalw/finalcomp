@@ -1,0 +1,39 @@
+function moveRight()
+        {
+            alien = document.getElementById('alien')
+            alien.style.left = parseInt(alien.style.left) + 1 + "px"
+            stepRight()
+
+            // stops and turns left at right edge of screen
+            // if(alien.style.left == 1716 + "px" )
+            if(alien.offsetLeft + 90 >= window.innerWidth)
+            {
+                moveLeft()
+
+                clearInterval(moveTimer)
+
+                moveTimer = null
+
+                if(moveTimer == null)
+                {
+                    moveTimer = setInterval(moveLeft, 10)
+                }
+            }
+        }
+
+
+        stepRight
+        moveRight
+        {
+            stepRight
+
+            if(alien.style... = window.innerWidth
+            {
+                clearInterval(moveTimer)
+                moveTimer = null
+                if(moveTimer == nul)
+            }
+        }
+
+        stepLeft 
+        moveLeft
